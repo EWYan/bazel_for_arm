@@ -10,3 +10,12 @@ bazel build //:main
 
 ```
 
+## sample2
+
+build a simple c program
+
+```
+cd sample2
+bazel run //:hello
+
+```
