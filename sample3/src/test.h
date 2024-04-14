@@ -1,0 +1,1 @@
+#define testflag 1
