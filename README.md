@@ -19,3 +19,15 @@ cd sample2
 bazel run //:hello
 
 ```
+
+## sample3
+
+build a simple c program 
+add include path
+add third-party lib
+
+```
+cd sample3
+bazel run //:hello
+
+```
