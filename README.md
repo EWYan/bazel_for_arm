@@ -31,3 +31,7 @@ cd sample3
 bazel run //:hello
 
 ```
+
+## sample4
+copy from https://github.com/hexdae/bazel-arm-none-eabi
+simplied for learning basic steps on adapt a new custom toolchain
