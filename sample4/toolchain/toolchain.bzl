@@ -31,24 +31,11 @@ target_constraints = {
         "armv7e-mf": ["@platforms//os:none", "@platforms//cpu:armv7e-mf"],
         "armv8-m": ["@platforms//os:none", "@platforms//cpu:armv8-m"],
     },
-    "arm-none-linux-gnueabihf": {
-        "arm": ["@platforms//os:linux", "@platforms//cpu:arm"],
-        "armv7": ["@platforms//os:linux", "@platforms//cpu:armv7"],
-    },
 }
 
 hosts = {
     "arm-none-eabi": {
-        "darwin_x86_64": ["@platforms//os:macos", "@platforms//cpu:x86_64"],
-        "darwin_arm64": ["@platforms//os:macos", "@platforms//cpu:arm64"],
         "linux_x86_64": ["@platforms//os:linux", "@platforms//cpu:x86_64"],
-        "linux_aarch64": ["@platforms//os:linux", "@platforms//cpu:arm64"],
-        "windows_x86_64": ["@platforms//os:windows", "@platforms//cpu:x86_64"],
-    },
-    "arm-none-linux-gnueabihf": {
-        # ARM has not provided an arm linux toolchain for darwin.
-        "linux_x86_64": ["@platforms//os:linux", "@platforms//cpu:x86_64"],
-        "linux_aarch64": ["@platforms//os:linux", "@platforms//cpu:arm64"],
         "windows_x86_64": ["@platforms//os:windows", "@platforms//cpu:x86_64"],
     },
 }
@@ -128,31 +115,6 @@ def arm_none_eabi_toolchain(name, version = "13.2.1", **kwargs):
         **kwargs
     )
 
-def arm_none_linux_gnueabihf_toolchain(
-        name,
-        version = "13.2.1",
-        linkopts = [],
-        **kwargs):
-    """
-    Create an arm-none-linux-gnueabihf toolchain with the given configuration.
-
-    Args:
-        name: The name of the toolchain.
-        version: The version of the gcc toolchain.
-        linkopts: Additional linker options.
-        **kwargs: Additional keyword arguments.
-    """
-    _arm_gnu_toolchain(
-        name,
-        toolchain = "arm_none_linux_gnueabihf",
-        toolchain_prefix = "arm-none-linux-gnueabihf",
-        version = version,
-        abi_version = "gnueabihf",
-        linkopts = ["-lc", "-lstdc++"] + linkopts,
-        include_std = True,
-        **kwargs
-    )
-
-def register_arm_gnu_toolchain(name, prefix):
-    for host in hosts[prefix]:
-        native.register_toolchains("{}_{}".format(name, host))
+# def register_arm_gnu_toolchain(name, prefix):
+#     for host in hosts[prefix]:
+#         native.register_toolchains("{}_{}".format(name, host))

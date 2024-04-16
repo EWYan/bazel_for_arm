@@ -1,18 +1,7 @@
 """Module extension for toolchains"""
 
-load(
-    "@toolchains_arm_gnu//toolchain/archives:arm_none_eabi.bzl",
-    "ARM_NONE_EABI",
-)
-load(
-    "@toolchains_arm_gnu//toolchain/archives:arm_none_linux_gnueabihf.bzl",
-    "ARM_NONE_LINUX_GNUEABIHF",
-)
-load(
-    "@toolchains_arm_gnu//:deps.bzl",
-    "arm_none_eabi_deps",
-    "arm_none_linux_gnueabihf_deps",
-)
+load("@toolchains_arm_gnu//toolchain/archives:arm_none_eabi.bzl", "ARM_NONE_EABI",)
+load("@toolchains_arm_gnu//:deps.bzl", "arm_none_eabi_deps")
 
 def _semver(version):
     """Parse a semantic version string into a list of integers."""
@@ -71,10 +60,6 @@ def _arm_toolchain_impl(ctx):
             tag = lambda mod: mod.tags.arm_none_eabi,
             deps = arm_none_eabi_deps,
         ),
-        _module_toolchain(
-            tag = lambda mod: mod.tags.arm_none_linux_gnueabihf,
-            deps = arm_none_linux_gnueabihf_deps,
-        ),
     ]
 
     for toolchain in available_toolchains:
@@ -88,9 +73,6 @@ arm_toolchain = module_extension(
     tag_classes = {
         "arm_none_eabi": tag_class(attrs = {
             "version": attr.string(default = _max_version(ARM_NONE_EABI.keys())),
-        }),
-        "arm_none_linux_gnueabihf": tag_class(attrs = {
-            "version": attr.string(default = _max_version(ARM_NONE_LINUX_GNUEABIHF.keys())),
         }),
     },
 )
