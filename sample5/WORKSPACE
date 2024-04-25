@@ -1,0 +1,1 @@
+register_toolchains("//toolchain:aarch32_baremetal_toolchain_win_x86_64")
