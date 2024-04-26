@@ -35,3 +35,6 @@ bazel run //:hello
 ## sample4
 copy from https://github.com/hexdae/bazel-arm-none-eabi
 simplied for learning basic steps on adapt a new custom toolchain
+
+## sample5
+custom local arm-none-eabi-<> toolchain 
