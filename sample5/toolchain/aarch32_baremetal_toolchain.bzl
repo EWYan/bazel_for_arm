@@ -68,7 +68,7 @@ def _impl(ctx):
     
     features = [arch_abi, link_static_no_stdlib, no_build_id]
     
-    return cc_common.create_cc_toolchain_config_info(
+    ccinfo = cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
         toolchain_identifier = "local",
         host_system_name = "local",
@@ -84,6 +84,9 @@ def _impl(ctx):
         ],
         features = features,
     )
+    # print(ccinfo)
+    return ccinfo
+
 
 aarch32_baremetal_toolchain_config = rule(
     implementation = _impl,

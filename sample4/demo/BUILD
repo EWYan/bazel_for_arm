@@ -43,15 +43,15 @@ cc_binary(
     deps = [":arm_library", "linkerscript.ld"],
 )
 
-platform_transition_filegroup(
-    name = "elf",
-    srcs = [":arm_elf"],
-    target_platform = ":arm_none_eabi",
-)
+# platform_transition_filegroup(
+#     name = "elf",
+#     srcs = [":arm_elf"],
+#     target_platform = ":arm_none_eabi",
+# )
 
 genrule(
     name = "asm",
-    srcs = [":elf"],
+    srcs = [":arm_elf"],
     outs = ["mock.asm"],
     cmd = "$(execpath @arm_none_eabi//:objdump) -d $< > $@",
     tools = ["@arm_none_eabi//:objdump"],
